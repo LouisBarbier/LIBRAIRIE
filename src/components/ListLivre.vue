@@ -1,40 +1,79 @@
 <script setup>
-import { reactive } from "vue";
-import { onMounted } from "vue";
-import Livre from "./Livre.vue";
-import LivreClass from "../LivreClass";
-const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres/";
-let listeC = reactive([]);
-function getLivres() {
-  const fetchOptions = { method: "GET" };
-  fetch(url, fetchOptions)
-    .then((response) => {
-      return response.json();
-    })
-    .then((dataJSON) => {
-      console.log(dataJSON);
-      listeC.splice(0, listeC.length);
-      dataJSON.forEach((v) =>
-        listeC.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix))
-      );
-    })
-    .catch((error) => console.log(error));
-}
-onMounted(() => {
-  getLivres();
-});
+    import { reactive } from "vue";
+    import { onMounted } from "vue";
+
+    import Livre from "./Livre.vue";
+    import Remplie from "./Remplie.vue";
+    import LivreClass from "../LivreClass";
+
+    const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres";
+    let listeL = reactive([]);
+    function getLivres() {
+    const fetchOptions = { method: "GET" };
+    fetch(url, fetchOptions)
+        .then((response) => {
+        return response.json();
+        })
+        .then((dataJSON) => {
+        console.log(dataJSON);
+        listeL.splice(0, listeL.length);
+        dataJSON.forEach((v) =>
+            listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix))
+        );
+        })
+        .catch((error) => console.log(error));
+    }
+    onMounted(() => {
+    getLivres();
+    });
+
+    function handlerDelete(idx) {
+    const fetchOptions={method: "DELETE"}
+    fetch(url+"/"+listeL[idx].id,fetchOptions)
+        .then((response) => {
+            return response.json();
+        })
+        .then((dataJSON) => {
+            getLivres()
+        })
+        .catch((error) =>
+            console.log(error)
+        )
+    }
+
+    function handlerAdd(titre) {
+        const head=new Headers()
+        head.append("Content-Type", "application/json")
+        const fetchOptions={method: "POST",
+            headers: head,
+            body: JSON.stringify({ titre : titre ,
+                                   qtestock : 10,
+                                   prix : 20 })}
+        fetch(url,fetchOptions)
+            .then((response) => {
+                return response.json();
+            })
+            .then((dataJSON) => {
+                getLivres()
+            })
+            .catch((error) =>
+                console.log(error)
+            )
+    }
 </script>
 
 <template>
-  <h3>Liste des livres</h3>
-  <ul>
-    <Livre
-      v-for="(livre, index) of listeC"
-      :key="livre.id"
-      :livre="livre"
-      :indexl="index"
-    />
-  </ul>
+    <h3>Liste des livres</h3>
+    <Remplie @addc="handlerAdd"></Remplie>
+    <ul>
+        <Livre
+            v-for="(livre, index) of listeL"
+            :key="livre.id"
+            :livre="livre"
+            :indexl="index"
+            @deletel="handlerDelete"
+        />
+    </ul>
 </template>
 
 <style scoped>
