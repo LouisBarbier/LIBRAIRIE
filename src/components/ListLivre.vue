@@ -3,25 +3,24 @@
     import { onMounted } from "vue";
 
     import Livre from "./Livre.vue";
-    import Remplie from "./Remplie.vue";
+    import Remplisseur from "./Remplisseur.vue";
     import LivreClass from "../LivreClass";
 
     const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres";
     let listeL = reactive([]);
     function getLivres() {
-    const fetchOptions = { method: "GET" };
-    fetch(url, fetchOptions)
-        .then((response) => {
-        return response.json();
-        })
-        .then((dataJSON) => {
-        console.log(dataJSON);
-        listeL.splice(0, listeL.length);
-        dataJSON.forEach((v) =>
-            listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix))
-        );
-        })
-        .catch((error) => console.log(error));
+        const fetchOptions = { method: "GET" };
+        fetch(url, fetchOptions)
+            .then((response) => {
+                return response.json();
+            })
+            .then((dataJSON) => {
+                listeL.splice(0, listeL.length);
+                dataJSON.forEach((v) =>
+                    listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix))
+                );
+            })
+            .catch((error) => console.log(error));
     }
     onMounted(() => {
     getLivres();
@@ -41,14 +40,14 @@
         )
     }
 
-    function handlerAdd(titre) {
+    function handlerAdd(titre,qtestock,prix) {
         const head=new Headers()
         head.append("Content-Type", "application/json")
         const fetchOptions={method: "POST",
             headers: head,
             body: JSON.stringify({ titre : titre ,
-                                   qtestock : 10,
-                                   prix : 20 })}
+                                   qtestock : qtestock ,
+                                   prix : prix })}
         fetch(url,fetchOptions)
             .then((response) => {
                 return response.json();
@@ -64,7 +63,7 @@
 
 <template>
     <h3>Liste des livres</h3>
-    <Remplie @addc="handlerAdd"></Remplie>
+    <Remplisseur @addl="handlerAdd"></Remplisseur>
     <ul>
         <Livre
             v-for="(livre, index) of listeL"
