@@ -1,8 +1,11 @@
 <script setup>
+import Entete from "./components/Entete.vue";
+import ListLivre from "./components/ListLivre.vue";
 </script>
 
 <template>
-  <h3>Hello world !!</h3>
+  <Entete />
+  <ListLivre />
 </template>
 
 <style>
