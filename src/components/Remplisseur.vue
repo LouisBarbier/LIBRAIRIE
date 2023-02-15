@@ -16,7 +16,7 @@
         prix.value = "";
     }
 
-    function actionTitre (event){
+    function actionTitre (){
         const url="https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value;
         const fetchOptions={};
         fetch(url,fetchOptions)
@@ -28,7 +28,6 @@
                 listeT.splice(0, listeT.length);
                 dataJSON.forEach((v) =>
                     listeT.push(v.titre))
-                console.log(listeT)
             })
             .catch((error)=>{
                 console.log(error)
@@ -39,12 +38,17 @@
     onMounted(() => {
     actionTitre();
     });
+
+    const selec = ref("")
+    function selection (){
+        titre.value=selec.value;
+    }
 </script>
 
 <template>
     <form @submit.prevent="handlerSubmit">
         <input id="titreL" type="text" v-model="titre" placeholder="Nom du nouveau livre" @input="actionTitre"/>
-        <select>
+        <select v-model="selec" @change="selection">
             <option v-for="(titre) of listeT">{{ titre }}</option>
         </select>
         <input type="number" v-model="qtestock" placeholder="Quantitée en stock"/>
