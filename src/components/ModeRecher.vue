@@ -83,11 +83,18 @@
             handlerDelete(idx);
         }
     }
+
+    function handlerRecherche (listeT){
+        listeL.splice(0, listeL.length);
+        listeT.forEach((v) =>
+            listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix))
+        );
+    }
 </script>
 
 <template>
     <h3>Liste des livres</h3>
-    <Rechercheur></Rechercheur>
+    <Rechercheur @recherche="handlerRecherche"></Rechercheur>
     <ul>
         <Livre
             v-for="(livre, index) of listeL"

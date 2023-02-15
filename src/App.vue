@@ -9,7 +9,8 @@
 
 <template>
   <Entete />
-  <button @click="modeR=!modeR">MODE</button>
+  <button @click="modeR=!modeR" v-if="modeR">Créer un Livre</button>
+  <button @click="modeR=!modeR" v-else>Rechercher un Livre</button>
   <ModeRecher v-if="modeR"></ModeRecher>
   <ModeRempli v-else></ModeRempli>
 </template>

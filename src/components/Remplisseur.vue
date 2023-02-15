@@ -1,13 +1,14 @@
 <script setup>
-    import { reactive } from "vue";
     import { onMounted } from "vue";
     import { ref } from "vue";
     
     const titre = ref("");
     const qtestock = ref("");
     const prix = ref("");
-    let listeT = reactive([]);
+    let listeT = [];
+
     const emit = defineEmits(["addl"]);
+    
     function handlerSubmit() {
         emit("addl", titre.value,qtestock.value,prix.value);
         titre.value = "";
@@ -43,18 +44,6 @@
     onMounted(() => {
     actionTitre();
     });
-
-    const selec = ref("")
-    function selection () {
-        titre.value=selec.value;
-        qtestock.value=0;
-        for (let l of listeT){
-            if (l.titre==selec.value){
-                prix.value=l.prix;
-                break
-            }
-        }
-    }
 </script>
 
 <template>

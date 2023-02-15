@@ -6,9 +6,15 @@
     const titre = ref("");
     let listeT = reactive([]);
 
+    const emit = defineEmits(["recherche"]);
+    
+    function handlerRecherche() {
+        emit("recherche", listeT);
+    }
+
     function actionTitre (){
         const url="https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value;
-        const fetchOptions={};
+        const fetchOptions={ method: "GET" };
         fetch(url,fetchOptions)
             .then((response) =>{
                 return response.json()
@@ -32,6 +38,7 @@
     const selec = ref("")
     function selection () {
         titre.value=selec.value;
+        handlerRecherche()
     }
 </script>
 
@@ -41,6 +48,7 @@
         <select v-model="selec" @change="selection">
             <option v-for="(livre) of listeT">{{ livre.titre }}</option>
         </select>
+        <input type="button" value="Rechercher" @click="handlerRecherche"/>
     </form>
 </template>
 
