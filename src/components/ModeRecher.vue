@@ -1,10 +1,8 @@
 <script setup>
     import { reactive } from "vue";
     import { onMounted } from "vue";
-    import { ref } from "vue";
 
     import Livre from "./Livre.vue";
-    import Remplisseur from "./Remplisseur.vue";
     import Rechercheur from "./Rechercheur.vue";
     import LivreClass from "../LivreClass";
 
@@ -40,26 +38,6 @@
         .catch((error) =>
             console.log(error)
         )
-    }
-
-    function handlerAdd(titre,qtestock,prix) {
-        const head=new Headers()
-        head.append("Content-Type", "application/json")
-        const fetchOptions={method: "POST",
-            headers: head,
-            body: JSON.stringify({ titre : titre ,
-                                   qtestock : qtestock ,
-                                   prix : prix })}
-        fetch(url,fetchOptions)
-            .then((response) => {
-                return response.json();
-            })
-            .then((dataJSON) => {
-                getLivres()
-            })
-            .catch((error) =>
-                console.log(error)
-            )
     }
 
     function handlerAdd1(idx) {
@@ -105,15 +83,11 @@
             handlerDelete(idx);
         }
     }
-
-    let modeR = ref(true);
 </script>
 
 <template>
     <h3>Liste des livres</h3>
-    <button @click="modeR=!modeR">MODE</button>
-    <Rechercheur v-if="modeR"></Rechercheur>
-    <Remplisseur @addl="handlerAdd" v-else></Remplisseur>
+    <Rechercheur></Rechercheur>
     <ul>
         <Livre
             v-for="(livre, index) of listeL"
