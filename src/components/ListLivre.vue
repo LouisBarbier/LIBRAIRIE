@@ -4,6 +4,7 @@
 
     import Livre from "./Livre.vue";
     import Remplisseur from "./Remplisseur.vue";
+    import Rechercheur from "./Rechercheur.vue";
     import LivreClass from "../LivreClass";
 
     const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres";
@@ -103,11 +104,15 @@
             handlerDelete(idx);
         }
     }
+
+    let modeR = true;
 </script>
 
 <template>
     <h3>Liste des livres</h3>
-    <Remplisseur @addl="handlerAdd"></Remplisseur>
+    <button @click="modeR=!modeR">MODE</button>
+    <Rechercheur v-if="modeR"></Rechercheur>
+    <Remplisseur @addl="handlerAdd" v-else></Remplisseur>
     <ul>
         <Livre
             v-for="(livre, index) of listeL"

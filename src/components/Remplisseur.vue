@@ -7,7 +7,6 @@
     const qtestock = ref("");
     const prix = ref("");
     let listeT = reactive([]);
-    let mini =  ref(0)
     const emit = defineEmits(["addl"]);
     function handlerSubmit() {
         emit("addl", titre.value,qtestock.value,prix.value);
@@ -31,8 +30,8 @@
                 let titres=[]
                 dataJSON.forEach((v) =>
                     titres.push(v.titre))
-                if (titres.indexOf(titre.value)==-1){
-                    mini.value=0;
+                if (titres.indexOf(titre.value)!=-1){
+                    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 }
             })
             .catch((error)=>{
@@ -49,29 +48,22 @@
     function selection () {
         titre.value=selec.value;
         qtestock.value=0;
-        valid="MODIFIER";
         for (let l of listeT){
             if (l.titre==selec.value){
-                mini.value=-l.qtestock;
                 prix.value=l.prix;
                 break
             }
         }
     }
-
-    let valid = ref("CREER")
 </script>
 
 <template>
     <form @submit.prevent="handlerSubmit">
-        <input id="titreL" type="text" v-model="titre" placeholder="Nom du nouveau livre" @input="actionTitre"/>
-        <input type="number" v-bind:min="mini" v-model="qtestock" placeholder="Quantitée en stock"/>
+        <input type="text" v-model="titre" placeholder="Nom du nouveau livre" @input="actionTitre"/>
+        <input type="number" min="1" v-model="qtestock" placeholder="Quantitée en stock"/>
         <input type="number" min="0" step="0.01" v-model="prix" placeholder="Prix"/>
-        <input type="submit" v-bind:value="valid"/>
+        <input type="submit" value="Créer"/>
     </form>
-    <select v-model="selec" @change="selection">
-        <option v-for="(livre) of listeT">{{ livre.titre }}</option>
-    </select>
 </template>
 
 <style scoped>
