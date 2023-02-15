@@ -1,6 +1,7 @@
 <script setup>
     import { reactive } from "vue";
     import { onMounted } from "vue";
+    import { ref } from "vue";
 
     import Livre from "./Livre.vue";
     import Remplisseur from "./Remplisseur.vue";
@@ -105,7 +106,7 @@
         }
     }
 
-    let modeR = true;
+    let modeR = ref(true);
 </script>
 
 <template>
