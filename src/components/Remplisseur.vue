@@ -27,7 +27,7 @@
             .then((dataJSON)=>{
                 listeT.splice(0, listeT.length);
                 dataJSON.forEach((v) =>
-                    listeT.push(v.titre))
+                    listeT.push(v))
             })
             .catch((error)=>{
                 console.log(error)
@@ -40,21 +40,30 @@
     });
 
     const selec = ref("")
-    function selection (){
+    let mini =  ref(0)
+    function selection () {
         titre.value=selec.value;
+        qtestock.value=0;
+        for (let l of listeT){
+            if (l.titre==titre.value){
+                mini.value=-l.qtestock;
+                prix.value=l.prix;
+                break
+            }
+        }
     }
 </script>
 
 <template>
     <form @submit.prevent="handlerSubmit">
         <input id="titreL" type="text" v-model="titre" placeholder="Nom du nouveau livre" @input="actionTitre"/>
-        <select v-model="selec" @change="selection">
-            <option v-for="(titre) of listeT">{{ titre }}</option>
-        </select>
-        <input type="number" v-model="qtestock" placeholder="Quantitée en stock"/>
-        <input type="number" min="0" v-model="prix" placeholder="Prix"/>
-        <input type="submit" value="valider" />
+        <input type="number" v-bind:min="mini" v-model="qtestock" placeholder="Quantitée en stock"/>
+        <input type="number" min="0" step="0.01" v-model="prix" placeholder="Prix"/>
+        <input type="submit" value="valider"/>
     </form>
+    <select v-model="selec" @change="selection">
+        <option v-for="(livre) of listeT">{{ livre.titre }}</option>
+    </select>
 </template>
 
 <style scoped>
