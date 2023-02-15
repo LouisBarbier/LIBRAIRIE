@@ -59,6 +59,50 @@
                 console.log(error)
             )
     }
+
+    function handlerAdd1(idx) {
+        const head=new Headers()
+        head.append("Content-Type", "application/json")
+        const fetchOptions={method: "POST",
+            headers: head,
+            body: JSON.stringify({ titre : listeL[idx].titre ,
+                                   qtestock : 1 ,
+                                   prix : listeL[idx].prix })}
+        fetch(url,fetchOptions)
+            .then((response) => {
+                return response.json();
+            })
+            .then((dataJSON) => {
+                getLivres()
+            })
+            .catch((error) =>
+                console.log(error)
+            )
+    }
+
+    function handlerDel1(idx) {
+        if (listeL[idx].qtestock-1>0){
+            const head=new Headers()
+            head.append("Content-Type", "application/json")
+            const fetchOptions={method: "POST",
+                headers: head,
+                body: JSON.stringify({ titre : listeL[idx].titre ,
+                                    qtestock : -1 ,
+                                    prix : listeL[idx].prix })}
+            fetch(url,fetchOptions)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((dataJSON) => {
+                    getLivres()
+                })
+                .catch((error) =>
+                    console.log(error)
+                )
+        } else {
+            handlerDelete(idx);
+        }
+    }
 </script>
 
 <template>
@@ -71,6 +115,8 @@
             :livre="livre"
             :indexl="index"
             @deletel="handlerDelete"
+            @add1="handlerAdd1"
+            @del1="handlerDel1"
         />
     </ul>
 </template>
