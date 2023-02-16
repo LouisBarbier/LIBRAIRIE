@@ -72,13 +72,13 @@
 
 <style scoped>
 div {
-  display:inline-block; background: #555555; vertical-align: top;
+  display:block; background: #555555;
   width: 150px; height:200px; border-radius: 10px; margin:5px 10px 5px 10px;
 }
 
 p#titr {
   color: #ffffff; text-align: center;
-  text-transform: uppercase; width: 150px; font-size: 1rem;
+  text-transform: uppercase; width: 150px; font-size: 25px;
   
 }
 </style>
