@@ -17,7 +17,7 @@
 <style scoped>
 li {
   display:inline-block; background: #555555; vertical-align: top;
-  width: 275px; height:400px; border-radius: 10px; margin:5px 10px 5px 10px;
+  width: 275px; height:400px; border-radius: 10px; margin:10px;
 }
 
 p#titr {
@@ -28,7 +28,7 @@ p#titr {
 p#prix {
   background-color: #ffffff; width: 100px; height: 25px; border-radius: 5px; text-align:center;
   font-size: 20px; font-family: "Century Gothic", "sans-serif", "Arial"; color: #000000;
-  position:relative; top:5px; left:160px;
+  position:relative; top:12px; left:167px;
 }
 
 p#qte {
@@ -50,6 +50,8 @@ button#inf {
 }
 
 button#del {
-
+  color: #ff0000; font-size: 12px; font-family: "Arial Black","Arial";
+  background-color: #ffefef; border-color: #000000; border-style: groove; border-radius: 5px;
+  position:relative; bottom: 80px; right: 25px;
 }
 </style>

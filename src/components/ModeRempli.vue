@@ -5,7 +5,6 @@
     const titre = ref("");
     const qtestock = ref("");
     const prix = ref("");
-    let listeT = [];
     
     function handlerSubmit() {
         const head=new Headers()
@@ -35,9 +34,6 @@
                 }
             )
             .then((dataJSON)=>{
-                listeT.splice(0, listeT.length);
-                dataJSON.forEach((v) =>
-                    listeT.push(v))
                 let titres=[]
                 dataJSON.forEach((v) =>
                     titres.push(v.titre))
@@ -66,19 +62,30 @@
     <div>
         <p id="titr">{{titre}}</p>
         <p id="qte">{{qtestock}}</p>
-        <p id="prix">{{prix}}</p>
+        <p id="prix">{{prix}} €</p>
     </div>
 </template>
 
 <style scoped>
 div {
-  display:block; background: #555555;
-  width: 150px; height:200px; border-radius: 10px; margin:5px 10px 5px 10px;
+  display:inline-block; background: #555555; vertical-align: top;
+  width: 275px; height:400px; border-radius: 10px; margin:5px 10px 5px 10px;
 }
 
 p#titr {
-  color: #ffffff; text-align: center;
-  text-transform: uppercase; width: 150px; font-size: 25px;
-  
+  color: #ffffff; text-align: center; text-transform: uppercase; width: 275px; height: 200px;
+  font-size: 50px; position: relative; bottom: 40px; font-family: "Century Gothic", "sans-serif", "Arial";
+}
+
+p#prix {
+  background-color: #ffffff; width: 100px; height: 25px; border-radius: 5px; text-align:center;
+  font-size: 20px; font-family: "Century Gothic", "sans-serif", "Arial"; color: #000000;
+  position:relative; top:5px; left:160px;
+}
+
+p#qte {
+  display: block; color: #000000; font-size: 20px; font-family: "Arial Black","Arial";
+  background-color: #cbcbcb; height: 30px; width: 30px; text-align:center; border-radius: 10px;
+  position:relative; top: 30px; left: 8px; border-color: #000000; border-style:solid;
 }
 </style>
