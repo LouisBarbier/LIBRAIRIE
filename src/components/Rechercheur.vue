@@ -9,13 +9,13 @@
     const emit = defineEmits(["recherche"]);
     
     function handlerRecherche() {
-        emit("recherche", listeT);
+        emit("recherche",titre.value);
     }
 
     function actionTitre (){
         const url="https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value;
         const fetchOptions={ method: "GET" };
-        fetch(url,fetchOptions)
+        fetch("https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value,fetchOptions)
             .then((response) =>{
                 return response.json()
                 }

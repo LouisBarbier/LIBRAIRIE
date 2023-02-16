@@ -84,11 +84,22 @@
         }
     }
 
-    function handlerRecherche (listeT){
-        listeL.splice(0, listeL.length);
-        listeT.forEach((v) =>
-            listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix))
-        );
+    function handlerRecherche (titr){
+        const fetchOptions={ method: "GET" };
+        fetch(url+"?search="+titr,fetchOptions)
+            .then((response) =>{
+                return response.json()
+                }
+            )
+            .then((dataJSON)=>{
+                listeL.splice(0, listeL.length);
+                dataJSON.forEach((v) =>
+                    listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix)))
+            })
+            .catch((error)=>{
+                console.log(error)
+                }
+            )
     }
 </script>
 
