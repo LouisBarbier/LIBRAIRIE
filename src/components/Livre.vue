@@ -1,6 +1,5 @@
 <script setup>
-  import { ref } from "vue";
-  defineProps(["livre", "indexl","react"]);
+  defineProps(["livre", "indexl"]);
   defineEmits(["deletel","add1","del1"]);
 </script>
 
@@ -9,9 +8,9 @@
     <p id="titr">{{livre.titre}}</p>
     <p id="qte">{{livre.qtestock}}</p>
     <p id="prix">{{livre.prix}} €</p>
-    <button id="sup" class="flech" @click="$emit('add1', indexl)" v-if="react">▲</button>
-    <button id="inf" class="flech" @click="$emit('del1', indexl)" v-if="react">▼</button>
-    <button id="del" @click="$emit('deletel', indexl)" v-if="react">SUPPRIMER</button>
+    <button id="sup" class="flech" @click="$emit('add1', indexl)">▲</button>
+    <button id="inf" class="flech" @click="$emit('del1', indexl)">▼</button>
+    <button id="del" @click="$emit('deletel', indexl)">SUPPRIMER</button>
   </li>
 </template>
 

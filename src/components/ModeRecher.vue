@@ -112,7 +112,6 @@
             :key="livre.id"
             :livre="livre"
             :indexl="index"
-            :react="true"
             @deletel="handlerDelete"
             @add1="handlerAdd1"
             @del1="handlerDel1"
