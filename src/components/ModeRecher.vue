@@ -8,9 +8,15 @@
 
     const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres";
     let listeL = reactive([]);
-    function getLivres() {
+    function getLivres(titr) {
         const fetchOptions = { method: "GET" };
-        fetch(url, fetchOptions)
+        if (titr!=null){
+            titr="?search="+titr;
+        }
+        else {
+            titr="";
+        }
+        fetch(url+titr, fetchOptions)
             .then((response) => {
                 return response.json();
             })
@@ -83,29 +89,11 @@
             handlerDelete(idx);
         }
     }
-
-    function handlerRecherche (titr){
-        const fetchOptions={ method: "GET" };
-        fetch(url+"?search="+titr,fetchOptions)
-            .then((response) =>{
-                return response.json()
-                }
-            )
-            .then((dataJSON)=>{
-                listeL.splice(0, listeL.length);
-                dataJSON.forEach((v) =>
-                    listeL.push(new LivreClass(v.id, v.titre, v.qtestock, v.prix)))
-            })
-            .catch((error)=>{
-                console.log(error)
-                }
-            )
-    }
 </script>
 
 <template>
     <h3>Liste des livres</h3>
-    <Rechercheur @recherche="handlerRecherche"></Rechercheur>
+    <Rechercheur @recherche="getLivres"></Rechercheur>
     <ul>
         <Livre
             v-for="(livre, index) of listeL"

@@ -15,43 +15,43 @@
 </template>
 
 <style scoped>
-li {
-  display:inline-block; background: #555555; vertical-align: top;
-  width: 275px; height:400px; border-radius: 10px; margin:10px;
-}
+  li {
+    display:inline-block; background: #555555; vertical-align: top;
+    width: 275px; height:400px; border-radius: 10px; margin:10px;
+  }
 
-p#titr {
-  color: #ffffff; text-align: center; text-transform: uppercase; width: 275px; height: 200px;
-  font-size: 50px; position: relative; bottom: 40px; font-family: "Century Gothic", "sans-serif", "Arial";
-}
+  p#titr {
+    color: #ffffff; text-align: center; width: 275px; height: 200px;
+    font-size: 50px; position: relative; bottom: 40px; font-family: "Century Gothic", "sans-serif", "Arial";
+  }
 
-p#prix {
-  background-color: #ffffff; width: 100px; height: 25px; border-radius: 5px; text-align:center;
-  font-size: 20px; font-family: "Century Gothic", "sans-serif", "Arial"; color: #000000;
-  position:relative; top:12px; left:167px;
-}
+  p#prix {
+    background-color: #ffffff; width: 100px; height: 25px; border-radius: 5px; text-align:center;
+    font-size: 20px; font-family: "Century Gothic", "sans-serif", "Arial"; color: #000000;
+    position:relative; top:12px; left:167px;
+  }
 
-p#qte {
-  display: block; color: #000000; font-size: 20px; font-family: "Arial Black","Arial";
-  background-color: #cbcbcb; height: 30px; width: 30px; text-align:center; border-radius: 10px;
-  position:relative; top: 30px; left: 8px; border-color: #000000; border-style:solid;
-}
+  p#qte {
+    display: block; color: #000000; font-size: 20px; font-family: "Arial Black","Arial";
+    background-color: #cbcbcb; height: 30px; width: 30px; text-align:center; border-radius: 10px;
+    position:relative; top: 30px; left: 8px; border-color: #000000; border-style:solid;
+  }
 
-button.flech {
-  background-color: #00000000; border-style:none; font-size: 30px;
-}
+  button.flech {
+    background-color: #00000000; border-style:none; font-size: 30px;
+  }
 
-button#sup {
-  position: relative; bottom:109px; left: 7px;
-}
+  button#sup {
+    position: relative; bottom:109px; left: 7px;
+  }
 
-button#inf {
-  position: relative; bottom:40px; right: 30px;
-}
+  button#inf {
+    position: relative; bottom:40px; right: 30px;
+  }
 
-button#del {
-  color: #ff0000; font-size: 12px; font-family: "Arial Black","Arial";
-  background-color: #ffefef; border-color: #000000; border-style: groove; border-radius: 5px;
-  position:relative; bottom: 80px; right: 25px;
-}
+  button#del {
+    color: #ff0000; font-size: 12px; font-family: "Arial Black","Arial";
+    background-color: #ffefef; border-color: #000000; border-style: groove; border-radius: 5px;
+    position:relative; bottom: 80px; right: 25px;
+  }
 </style>
