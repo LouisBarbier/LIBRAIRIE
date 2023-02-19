@@ -48,6 +48,10 @@
     onMounted(() => {
     actionTitre();
     });
+
+    function probTitre (){
+        alert ("IMPOSSIBLE DE CREER UN LIVRE AVEC CE TITRE\n\n(un autre livre le possède déjà)")
+    }
 </script>
 
 <template>
@@ -59,7 +63,7 @@
         <p id="nprix">PRIX</p>
         <input id="iprix" type="number" min="0" step="0.01" v-model="prix" placeholder="Prix du nouveau livre" required="true"/>
         <input class="sub" type="submit" value="CREER" v-if="titres.indexOf(titre)==-1"/>
-        <p class="sub" v-else>CREER</p>
+        <p class="sub" v-else @click="probTitre">CREER</p>
     </form>
     <div>
         <p id="titr">{{titre}}</p>
@@ -97,9 +101,15 @@
     }
     input.sub{
         position: absolute; top: 227px; left: 10px; height: 45px; width: 463px;
+        border-style: solid; border-color: #555555; background-color: #e5e5e5; border-radius: 2px;
+        border-width: 2px;
+        font-family: "Arial"; font-size: 20px;
     }
     p.sub {
-        position: absolute; top: 257px; left: 10px; height: 45px; width: 463px;
+        position: absolute; top: 207px; left: 10px; height: 41px; width: 459px;
+        border-style: solid; border-color: #554545; background-color: #e5b8b8; border-radius: 2px;
+        border-width: 2px;
+        text-align: center; line-height: 41px; font-family: "Arial"; font-size: 20px;
     }
     div {
         display:inline-block; background: #555555; vertical-align: top;
