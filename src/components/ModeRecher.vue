@@ -92,8 +92,8 @@
 </script>
 
 <template>
-    <h3>Liste des livres</h3>
     <Rechercheur @recherche="getLivres"></Rechercheur>
+    <div></div>
     <ul>
         <Livre
             v-for="(livre, index) of listeL"
@@ -108,4 +108,10 @@
 </template>
 
 <style scoped>
+ul {
+    position: relative; top: 156px;
+}
+div {
+    border-top: 1px solid #2c2c2c; width: 950px; position: absolute; top: 173px; left: 135px;
+}
 </style>

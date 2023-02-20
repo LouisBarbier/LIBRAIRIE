@@ -2,11 +2,12 @@
 </script>
 
 <template>
-  <h3>Application LIBRAIRIE</h3>
+  <img src="src\assets\LOGOLib.png" alt="LIBRAIRIE N°5"/>
 </template>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+img {
+  height: 45px; width: 350px;
+  position: absolute; top: 48px; left: 38px;
 }
 </style>

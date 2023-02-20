@@ -22,7 +22,7 @@
 
   p#titr {
     color: #ffffff; text-align: center; width: 275px; height: 200px;
-    font-size: 50px; position: relative; bottom: 40px; font-family: "Century Gothic", "sans-serif", "Arial";
+    font-size: 35px; position: relative; bottom: 30px; font-family: "Century Gothic", "sans-serif", "Arial";
   }
 
   p#prix {

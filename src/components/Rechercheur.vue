@@ -8,12 +8,11 @@
 
     const emit = defineEmits(["recherche"]);
     
-    function handlerRecherche() {
+    function handlerSubmit() {
         emit("recherche",titre.value);
     }
 
     function actionTitre (){
-        const url="https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value;
         const fetchOptions={ method: "GET" };
         fetch("https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value,fetchOptions)
             .then((response) =>{
@@ -38,19 +37,30 @@
     const selec = ref("")
     function selection () {
         titre.value=selec.value;
-        handlerRecherche()
+        handlerSubmit()
     }
 </script>
 
 <template>
-    <form>
-        <input type="text" v-model="titre" placeholder="Nom du livre" @input="actionTitre"/>
+    <form @submit.prevent="handlerSubmit">
+        <input id="titr" type="text" v-model="titre" placeholder="Nom du livre" @input="actionTitre" @submit="handlerRecherche"/>
         <select v-model="selec" @change="selection">
             <option v-for="(livre) of listeT">{{ livre.titre }}</option>
         </select>
-        <input type="button" value="Rechercher" @click="handlerRecherche"/>
+        <input id="sub" type="submit" value="&#128269;" aria-label="RECHERCHER"/>
     </form>
 </template>
 
 <style scoped>
+input#titr{
+    width: 600px; height: 30px; position: absolute; top: 130px; left: 265px;
+    font-family: "Century Gothic", "sans-serif", "Arial"; font-size: 20px;
+}
+select {
+    width: 72px; height: 36px; position: absolute; top: 130px; left: 873px;
+    font-family: "Century Gothic", "sans-serif", "Arial";
+}
+input#sub{
+    width: 36px; height: 36px; position: absolute; top: 130px; left: 945px;
+}
 </style>

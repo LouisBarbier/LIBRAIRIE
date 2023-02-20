@@ -103,13 +103,13 @@
         position: absolute; top: 227px; left: 10px; height: 45px; width: 463px;
         border-style: solid; border-color: #555555; background-color: #e5e5e5; border-radius: 2px;
         border-width: 2px;
-        font-family: "Arial"; font-size: 20px;
+        font-family: "Arial"; font-size: 20px; font-weight: bold;
     }
     p.sub {
         position: absolute; top: 207px; left: 10px; height: 41px; width: 459px;
         border-style: solid; border-color: #554545; background-color: #e5b8b8; border-radius: 2px;
         border-width: 2px;
-        text-align: center; line-height: 41px; font-family: "Arial"; font-size: 20px;
+        text-align: center; line-height: 41px; font-family: "Arial"; font-size: 20px; font-weight: bold;
     }
     div {
         display:inline-block; background: #555555; vertical-align: top;
