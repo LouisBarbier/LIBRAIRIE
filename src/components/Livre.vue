@@ -54,4 +54,8 @@
     background-color: #ffefef; border-color: #000000; border-style: groove; border-radius: 5px;
     position:relative; bottom: 80px; right: 25px;
   }
+
+  button#del:hover {
+    background-color: #ffd0d0;
+  }
 </style>
