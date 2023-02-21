@@ -3,16 +3,16 @@
     import { onMounted } from "vue";
     import { ref } from "vue";
     
-    const titre = ref("");
-    let listeT = reactive([]);
+    const titre = ref(""); /*permet d'obtenir ce qui est écrit dans l'input Titre*/
+    let listeT = reactive([]); /*liste des livres comportant la valeur de titre dans leur titre*/
 
-    const emit = defineEmits(["recherche"]);
+    const emit = defineEmits(["recherche"]); /*évènement indiquant que l'utilisateur veut chercher des livre à partir de leur titre*/
     
-    function handlerSubmit() {
+    function handlerSubmit() { /*Envoie l'évènement "recherche" en indiquant qu'elle suite de caractère doivent contenir les livres recherchés*/
         emit("recherche",titre.value);
     }
 
-    function actionTitre (){
+    function actionTitre (){ /*Permet de remplir listeT à chaque modification de l'input Titre*/
         const fetchOptions={ method: "GET" };
         fetch("https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres?search="+titre.value,fetchOptions)
             .then((response) =>{
@@ -30,24 +30,24 @@
             )
     }
 
-    onMounted(() => {
+    onMounted(() => { /*Permet de d'appeler actionTitre au lancement du mode Recherche (l'input Titre étant vide tout les livres de la librairie seront placé dans listeT)*/
     actionTitre();
     });
 
-    const selec = ref("")
-    function selection () {
+    const selec = ref("") /*permet d'obtenir quel titre est sélectionné dans dans la "barre de sélection" (dans le select)*/
+    function selection () { /*Permet de remplacé ce qui été déjà marqué dans l'input Titre par ce qui a été sélectionné (Ce qui permet à l'utilisateur de mieux voir ce qu'il a sélectionné et Cela permet également le bon fonctionnement de l'appel de la fonction handlerSubmit() dans cette même fonction)*/
         titre.value=selec.value;
         handlerSubmit()
     }
 </script>
 
 <template>
-    <form @submit.prevent="handlerSubmit">
-        <input id="titr" type="text" v-model="titre" placeholder="Nom du livre" @input="actionTitre" @submit="handlerRecherche"/>
-        <select v-model="selec" @change="selection">
+    <form @submit.prevent="handlerSubmit"> <!--Barre de recherche-->
+        <input id="titr" type="text" v-model="titre" placeholder="Nom du livre" @input="actionTitre"/> <!--case pour la suite de caractère recherché-->
+        <select v-model="selec" @change="selection"> <!--select dont les options sont les livres dont le titre contient la suite de caractère renseigné dans l'input Titre, lorsqu'on selection un livre parmi les options cela affiche ce livre-->
             <option v-for="(livre) of listeT">{{ livre.titre }}</option>
         </select>
-        <input id="sub" type="submit" value="&#128269;" aria-label="RECHERCHER"/>
+        <input id="sub" type="submit" value="&#128269;" aria-label="RECHERCHER"/>  <!--Bouton pour recherché les livres dont le titre contient la suite de caractère renseigné dans l'input Titre-->
     </form>
 </template>
 

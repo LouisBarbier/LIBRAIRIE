@@ -7,13 +7,14 @@
     import LivreClass from "../LivreClass";
 
     const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/5/livres";
-    let listeL = reactive([]);
-    function getLivres(titr) {
+    let listeL = reactive([]); /*Liste contenant les diffèrents livres affichés*/
+
+    function getLivres(titr) { /*Permet de remplir listeL, titr n'est pas un argument obligatoire*/
         const fetchOptions = { method: "GET" };
-        if (titr!=null){
+        if (titr!=null){ /*Si on a donné un titr on ne met dans listeL que les livres contenant titr dans leur titre*/
             titr="?search="+titr;
         }
-        else {
+        else { /*Si on n'a pas donné de titr on met dans listeL tout les livres de la  librairie (donc tout ceux qui contiennent "" dans leur titre)*/
             titr="";
         }
         fetch(url+titr, fetchOptions)
@@ -28,11 +29,11 @@
             })
             .catch((error) => console.log(error));
     }
-    onMounted(() => {
+    onMounted(() => { /*Permet d'exéxuter getLivres au lancement du mode Recherche*/
     getLivres();
     });
 
-    function handlerDelete(idx) {
+    function handlerDelete(idx) { /*Supprime le Livre à l'index idx de listeL de la librairie*/
     const fetchOptions={method: "DELETE"}
     fetch(url+"/"+listeL[idx].id,fetchOptions)
         .then((response) => {
@@ -46,7 +47,7 @@
         )
     }
 
-    function handlerAdd1(idx) {
+    function handlerAdd1(idx) { /*Ajoutte 1 livre à la quantité en stock du Livre à l'index idx de listeL*/
         const head=new Headers()
         head.append("Content-Type", "application/json")
         const fetchOptions={method: "POST",
@@ -66,7 +67,7 @@
             )
     }
 
-    function handlerDel1(idx) {
+    function handlerDel1(idx) { /*Retire 1 livre à la quantité en stock du Livre à l'index idx de listeL*/
         if (listeL[idx].qtestock-1>0){
             const head=new Headers()
             head.append("Content-Type", "application/json")
@@ -92,9 +93,9 @@
 </script>
 
 <template>
-    <Rechercheur @recherche="getLivres"></Rechercheur>
-    <div></div>
-    <ul>
+    <Rechercheur @recherche="getLivres"></Rechercheur> <!--Barre de recherche-->
+    <div></div> <!--Trait séparant la Barre de recherche des livres-->
+    <ul> <!--Liste des livres affiché-->
         <Livre
             v-for="(livre, index) of listeL"
             :key="livre.id"

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <img src="src\assets\LOGOLib.png" alt="LIBRAIRIE N°5"/>
+  <img src="src\assets\LOGOLib.png" alt="LIBRAIRIE N°5"/> <!--Logo de l'Application Web-->
 </template>
 
 <style scoped>

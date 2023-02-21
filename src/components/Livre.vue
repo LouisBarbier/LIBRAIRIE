@@ -1,16 +1,16 @@
 <script setup>
-  defineProps(["livre", "indexl"]);
-  defineEmits(["deletel","add1","del1"]);
+  defineProps(["livre", "indexl"]); /*attribut à donné lors de la création d'un Livre*/
+  defineEmits(["deletel","add1","del1"]); /*évènement que peut envoyer un Livre*/
 </script>
 
 <template>
-  <li>
+  <li> <!--Affichage du livre-->
     <p id="titr">{{livre.titre}}</p>
     <p id="qte">{{livre.qtestock}}</p>
     <p id="prix">{{livre.prix}} €</p>
-    <button id="sup" class="flech" @click="$emit('add1', indexl)">▲</button>
-    <button id="inf" class="flech" @click="$emit('del1', indexl)">▼</button>
-    <button id="del" @click="$emit('deletel', indexl)">SUPPRIMER</button>
+    <button id="sup" class="flech" @click="$emit('add1', indexl)">▲</button> <!--Bouton pour ajoutter 1 livre à la quantité en stock-->
+    <button id="inf" class="flech" @click="$emit('del1', indexl)">▼</button> <!--Bouton pour retirer 1 livre à la quantité en stock-->
+    <button id="del" @click="$emit('deletel', indexl)">SUPPRIMER</button> <!--Bouton pour supprimer le livre de la librairie-->
   </li>
 </template>
 

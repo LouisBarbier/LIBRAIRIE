@@ -4,18 +4,18 @@
   import ModeRempli from "./components/ModeRempli.vue";
   import ModeRecher from "./components/ModeRecher.vue";
 
-  let modeR = ref(true);
+  let modeR = ref(true); /*modeR permet de savoir si on est en mode Recherche*/
 </script>
 
 <template>
   <Entete />
-  <button class="CR" @click="modeR=!modeR" v-if="modeR">CREER<br/>un Livre</button>
-  <button class="RE" @click="modeR=!modeR" v-else>RECHERCHER<br/>un Livre</button>
-  <p class="RE" v-if="modeR">RECHERCHER<br/>un Livre</p>
-  <p class="CR" v-else>CREER<br/>un Livre</p>
+  <button class="CR" @click="modeR=!modeR" v-if="modeR">CREER<br/>un Livre</button> <!--Bouton envoyant vers le mode Création-->
+  <button class="RE" @click="modeR=!modeR" v-else>RECHERCHER<br/>un Livre</button> <!--Bouton envoyant vers le mode Recherche-->
+  <p class="RE" v-if="modeR">RECHERCHER<br/>un Livre</p> <!--Faux Bouton mode Recherche (Non clickable)-->
+  <p class="CR" v-else>CREER<br/>un Livre</p> <!--Faux Bouton mode Création (Non clickable)-->
 
-  <ModeRecher v-if="modeR"></ModeRecher>
-  <ModeRempli v-else></ModeRempli>
+  <ModeRecher v-if="modeR"></ModeRecher> <!--mode Recherche-->
+  <ModeRempli v-else></ModeRempli> <!--mode Création-->
 </template>
 
 <style scoped>
@@ -28,6 +28,9 @@
   }
   button {
     background-color: rgb(193, 255, 255); height: 60px; width: 200px;
+  }
+  button:hover {
+    background-color: rgb(130, 255, 255);
   }
   .CR{
     border-radius: 20px 0px 0px 20px;
