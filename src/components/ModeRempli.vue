@@ -21,6 +21,7 @@
                 titre.value = "";
                 qtestock.value = "";
                 prix.value = "";
+                GTitres()
             })
             .catch((error) =>
                 console.log(error)
