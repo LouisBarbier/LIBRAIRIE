@@ -17,8 +17,4 @@ export default class LivreClass {
     get prix() {
       return this._prix;
     }
-  
-    pourAfficher() {
-      return `--> Titre : ${this._titre} , Quantité en Stock : ${this._qtestock} , Prix : ${this._prix}`;
-    }
   }
